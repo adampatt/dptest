@@ -1,20 +1,19 @@
 'use server';
 import { fetchProducts } from '@/app/lib/api';
+import ProductCard from '@/app/components/productCard';
 
 export default async function Home() {
   const products = await fetchProducts();
+
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <div className="grid grid-cols-3 gap-12 max-w-7xl mx-auto px-4">
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <p>{JSON.stringify(products[0])}</p>
-        </div>
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <p>{JSON.stringify(products[1])}</p>
-        </div>
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <p>{JSON.stringify(products[2])}</p>
-        </div>
+      <div className="p-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {products.map((product) => (
+          <ProductCard
+            key={product.name}
+            product={product}
+          />
+        ))}
       </div>
     </div>
   );
