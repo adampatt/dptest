@@ -42,7 +42,7 @@ const OutlineStarIcon = () => (
 
 export default function ProductCard({ product }: ProductCardProps) {
   return (
-    <div className="bg-white rounded-[6px] shadow-md overflow-hidden flex flex-col h-[300px] w-[200px]">
+    <div className="bg-white rounded-[6px] shadow-[0px_30px_50px_-30px_rgba(0,0,0,0.2),0px_50px_100px_-20px_rgba(50,50,93,0.25)] overflow-hidden flex flex-col h-[300px] w-[200px]">
       {/* Image container with relative positioning for price overlay */}
       <div className="relative h-[164px] w-full">
         <Image
@@ -60,6 +60,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
       {/* Content section */}
       <div className="flex flex-col justify-center items-center pt-4">
+        {/* Product name */}
         <p className={`text-xs font-semibold pb-4 ${colorClasses[product.color as ColorKey].text} text-center`}>{product.name}</p>
 
         {/* Ratings */}
