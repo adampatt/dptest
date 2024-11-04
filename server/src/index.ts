@@ -1,7 +1,9 @@
 import Fastify from 'fastify';
-
+import productRoutes from './routes/product';
 
 const fastify = Fastify({ logger: true });
+
+fastify.register(productRoutes, { prefix: '/api' });
 
 fastify.listen({port: 4000 }, (err, address) => {
   if (err) {
