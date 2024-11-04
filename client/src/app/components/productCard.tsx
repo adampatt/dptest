@@ -27,18 +27,18 @@ export default function ProductCard({ product }: ProductCardProps) {
       </div>
 
       {/* Content section */}
-      <div className="flex flex-col justify-center items-center p-4">
-        <p className={`text-xs font-semibold ${colorClasses[product.color as ColorKey].text} mb-2 text-center`}>{product.name}</p>
+      <div className="flex flex-col justify-center items-center p-4 space-y-2">
+        <p className={`text-xs font-semibold ${colorClasses[product.color as ColorKey].text} text-center`}>{product.name}</p>
 
         {/* Ratings */}
-        <div className="mb-4 text-center">
+        <div className="text-center">
           <p className="text-black text-[10px]">Ratings</p>
           <div className="flex">stars</div>
         </div>
 
         {/* Add to Cart button */}
         <button
-          className={`mt-auto w-full ${
+          className={`mt-6 w-full ${
             colorClasses[product.color as ColorKey].bg
           } text-white font-bold text-[10px] leading-[150%] py-3 rounded-md hover:opacity-90 transition-colors`}
         >
