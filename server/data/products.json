@@ -1,23 +1,23 @@
 [
   {
-    "Name": "Savings & Cost avoidance",
-    "Rating": 4,
-    "Price": 90000,
-    "URL": "image1savings",
-    "Color": "orange"
+    "name": "Savings & Cost avoidance",
+    "rating": 4,
+    "price": 90000,
+    "imageUrl": "image1savings",
+    "color": "orange"
   },
   {
-    "Name": "Code of Conduct",
-    "Rating": 2,
-    "Price": 90000,
-    "URL": "image2code", 
-    "Color": "blue"
+    "name": "Code of Conduct",
+    "rating": 2,
+    "price": 90000,
+    "imageUrl": "image2code", 
+    "color": "blue"
   },
   {
-    "Name": "ESG measurement",
-    "Rating": 1,
-    "Price": 90000,
-    "URL": "image3esg",
-    "Color": "green"
+    "name": "ESG measurement",
+    "rating": 1,
+    "price": 90000,
+    "imageUrl": "image3esg",
+    "color": "green"
   }
 ]
