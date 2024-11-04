@@ -8,17 +8,6 @@ dist/
 client/.next/
 server/dist/
 
-# Logs
-client/logs/
-server/logs/
-*.log
-
-# OS / Editor files
-.DS_Store
-Thumbs.db
-.vscode/
-.idea/
-
 # Environment variables
 client/.env
 server/.env
