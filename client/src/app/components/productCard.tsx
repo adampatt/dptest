@@ -3,6 +3,9 @@
 import Image from 'next/image';
 import { Product } from '../types/product';
 import { colorClasses, ColorKey } from '../utils/colorMappings';
+import { Inter } from 'next/font/google';
+
+const inter = Inter({ subsets: ['latin'] });
 
 interface ProductCardProps {
   product: Product;
@@ -42,7 +45,7 @@ const OutlineStarIcon = () => (
 
 export default function ProductCard({ product }: ProductCardProps) {
   return (
-    <div className="bg-white rounded-[6px] shadow-[0px_30px_50px_-30px_rgba(0,0,0,0.2),0px_50px_100px_-20px_rgba(50,50,93,0.25)] overflow-hidden flex flex-col h-[300px] w-[200px]">
+    <article className="bg-white rounded-[6px] shadow-[0px_30px_50px_-30px_rgba(0,0,0,0.2),0px_50px_100px_-20px_rgba(50,50,93,0.25)] overflow-hidden flex flex-col h-[300px] w-[200px]">
       {/* Image container with relative positioning for price overlay */}
       <div className="relative h-[164px] w-full">
         <Image
@@ -54,7 +57,9 @@ export default function ProductCard({ product }: ProductCardProps) {
         />
         {/* Price overlay */}
         <div className="absolute bottom-1 right-1 bg-white rounded-full px-[10px] py-[7px] shadow-lg">
-          <span className="text-blue font-semibold text-[12px] leading-[150%]">{new Intl.NumberFormat('sv-SE').format(product.price)} SEK</span>
+          <p className={`text-blue font-semibold text-[12px] leading-[150%] ${inter.className}`}>
+            {new Intl.NumberFormat('sv-SE').format(product.price)} SEK
+          </p>
         </div>
       </div>
 
@@ -78,10 +83,11 @@ export default function ProductCard({ product }: ProductCardProps) {
           className={`mt-4 w-[184px] ${
             colorClasses[product.color as ColorKey].bg
           } text-white font-bold text-[10px] leading-[150%] py-3 rounded-md hover:opacity-90 transition-colors`}
+          aria-label={`Add ${product.name} to cart`}
         >
           ADD TO CART
         </button>
       </div>
-    </div>
+    </article>
   );
 }
