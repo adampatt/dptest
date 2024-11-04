@@ -6,7 +6,11 @@ import { colorClasses, ColorKey } from '../utils/colorMappings';
 import { Inter } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'] });
+const MAX_RATING = 5;
 
+const formatPrice = (price: number) => {
+  return new Intl.NumberFormat('sv-SE').format(price);
+};
 interface ProductCardProps {
   product: Product;
 }
@@ -57,9 +61,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         />
         {/* Price overlay */}
         <div className="absolute bottom-1 right-1 bg-white rounded-full px-[10px] py-[7px] shadow-lg">
-          <p className={`text-blue font-semibold text-[12px] leading-[150%] ${inter.className}`}>
-            {new Intl.NumberFormat('sv-SE').format(product.price)} SEK
-          </p>
+          <p className={`text-blue font-semibold text-[12px] leading-[150%] ${inter.className}`}>{formatPrice(product.price)} SEK</p>
         </div>
       </div>
 
@@ -67,17 +69,15 @@ export default function ProductCard({ product }: ProductCardProps) {
       <div className="flex flex-col justify-center items-center pt-4">
         {/* Product name */}
         <p className={`text-xs font-semibold pb-4 ${colorClasses[product.color as ColorKey].text} text-center`}>{product.name}</p>
-
         {/* Ratings */}
         <div className="text-center gap-y-2">
           <p className="text-black text-[10px]">Ratings</p>
           <div className="flex">
-            {[...Array(5)].map((_, index) => (
+            {[...Array(MAX_RATING)].map((_, index) => (
               <span key={index}>{index < product.rating ? <FilledStarIcon /> : <OutlineStarIcon />}</span>
             ))}
           </div>
         </div>
-
         {/* Add to Cart button */}
         <button
           className={`mt-4 w-[184px] ${
