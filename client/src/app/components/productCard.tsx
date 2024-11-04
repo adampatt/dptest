@@ -14,7 +14,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       {/* Image container with relative positioning for price overlay */}
       <div className="relative h-[164px] w-full">
         <Image
-          src={`/productImages${product.imageUrl}.svg`}
+          src={`/productImages/${product.imageUrl}.svg`}
           alt={product.name}
           height={300}
           width={200}
