@@ -8,14 +8,14 @@
   },
   {
     "name": "Code of Conduct",
-    "rating": 2,
+    "rating": 4,
     "price": 90000,
     "imageUrl": "image2code", 
     "color": "blue"
   },
   {
     "name": "ESG measurement",
-    "rating": 1,
+    "rating": 4,
     "price": 90000,
     "imageUrl": "image3esg",
     "color": "green"
