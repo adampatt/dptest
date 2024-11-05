@@ -4,16 +4,12 @@ import Image from 'next/image';
 import { Product } from '../types/product';
 import { colorClasses, ColorKey } from '../utils/colorMappings';
 import { Inter } from 'next/font/google';
-
 const inter = Inter({ subsets: ['latin'] });
 const MAX_RATING = 5;
 
 const formatPrice = (price: number) => {
   return new Intl.NumberFormat('sv-SE').format(price);
 };
-interface ProductCardProps {
-  product: Product;
-}
 
 const FilledStarIcon = () => (
   <svg
@@ -47,10 +43,13 @@ const OutlineStarIcon = () => (
   </svg>
 );
 
+type ProductCardProps = {
+  product: Product;
+};
+
 export default function ProductCard({ product }: ProductCardProps) {
   return (
-    <article className="bg-white rounded-[6px] shadow-[0px_30px_50px_-30px_rgba(0,0,0,0.2),0px_50px_100px_-20px_rgba(50,50,93,0.25)] overflow-hidden flex flex-col h-[300px] w-[200px]">
-      {/* Image container with relative positioning for price overlay */}
+    <article className="bg-white rounded-md shadow-[0px_30px_50px_-30px_rgba(0,0,0,0.2),0px_50px_100px_-20px_rgba(50,50,93,0.25)] overflow-hidden flex flex-col h-[300px] w-[200px]">
       <div className="relative h-[164px] w-full">
         <Image
           src={`/productImages/${product.imageUrl}.svg`}
@@ -64,25 +63,16 @@ export default function ProductCard({ product }: ProductCardProps) {
           <p className={`text-blue font-semibold text-[12px] leading-[150%] ${inter.className}`}>{formatPrice(product.price)} SEK</p>
         </div>
       </div>
-
-      {/* Content section */}
-      <div className="flex flex-col justify-center items-center pt-4">
-        {/* Product name */}
-        <p className={`text-xs font-semibold pb-4 ${colorClasses[product.color as ColorKey].text} text-center`}>{product.name}</p>
-        {/* Ratings */}
-        <div className="text-center gap-y-2">
-          <p className="text-black text-[10px]">Ratings</p>
-          <div className="flex">
-            {[...Array(MAX_RATING)].map((_, index) => (
-              <span key={index}>{index < product.rating ? <FilledStarIcon /> : <OutlineStarIcon />}</span>
-            ))}
-          </div>
+      <div className="flex flex-col justify-center items-center p-2">
+        <p className={`text-xs font-semibold mb-2 ${colorClasses[product.color as ColorKey]?.text || 'text-gray-500'} text-center`}>{product.name}</p>
+        <p className="text-black text-[10px] mb-1">Ratings</p>
+        <div className="flex mb-6">
+          {[...Array(MAX_RATING)].map((_, index) => (
+            <span key={index}>{index < product.rating ? <FilledStarIcon /> : <OutlineStarIcon />}</span>
+          ))}
         </div>
-        {/* Add to Cart button */}
         <button
-          className={`mt-4 w-[184px] ${
-            colorClasses[product.color as ColorKey].bg
-          } text-white font-bold text-[10px] leading-[150%] py-3 rounded-md hover:opacity-90 transition-colors`}
+          className={`w-full ${colorClasses[product.color as ColorKey]?.bg || 'bg-gray-500'} text-white font-bold text-[10px] py-3 rounded-md`}
           aria-label={`Add ${product.name} to cart`}
         >
           ADD TO CART
