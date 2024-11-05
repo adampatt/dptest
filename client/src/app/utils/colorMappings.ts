@@ -1,4 +1,15 @@
-export const colorClasses = {
+import { z } from 'zod'
+
+const ColorEnum = z.enum(['yellow', 'blue', 'green', 'orange', 'black'])
+
+const ColorClassesSchema = z.object({
+  text: z.string().startsWith('text-'),
+  bg: z.string().startsWith('bg-'),
+})
+
+const ColorMappingSchema = z.record(ColorEnum, ColorClassesSchema)
+
+export const colorClasses = ColorMappingSchema.parse({
   yellow: {
     text: 'text-yellow',
     bg: 'bg-yellow',
@@ -19,6 +30,7 @@ export const colorClasses = {
     text: 'text-black',
     bg: 'bg-black',
   },
-} as const;
+})
 
-export type ColorKey = keyof typeof colorClasses; 
+export type ColorKey = z.infer<typeof ColorEnum>
+export type ColorClasses = z.infer<typeof ColorMappingSchema> 
